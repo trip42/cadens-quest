@@ -10,6 +10,15 @@ var map = {
 	2: { id: 2, tiles: [ 3 ] }
 };
 
+var tiles = [
+	{ id: 0, name: 'emtpy' },
+	{ id: 1, name: 'grass' },
+	{ id: 2, name: 'rock' },
+	{ id: 3, name: 'chest' },
+	{ id: 4, name: 'sand' },
+	{ id: 5, name: 'tree' },
+];
+
 app.use( express.static( __dirname + '/public' ) );
 app.use( express.bodyParser() );
 
@@ -37,6 +46,11 @@ app.get( '/map/:x/:y', function( req, res )  {
 
 	res.setHeader( 'content-type', 'application/json' );
 	res.send( JSON.stringify( section ) );
+});
+
+app.get( '/tiles', function( req, res ) {
+	res.setHeader( 'content-type', 'application/json' );
+	res.send( JSON.stringify( tiles ) );
 });
 
 app.put( '/map/:x/:y', function( req, res ) {
