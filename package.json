@@ -5,6 +5,7 @@
     "url": "https://github.com/trip42/cadens-quest.git"
   },
   "dependencies": {
-    "express": "*"
+    "express": "*",
+    "underscore": "*"
   }
 }

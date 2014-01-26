@@ -1,7 +1,10 @@
 require.config({
   baseUrl: '/vendor',
   paths: {
-    js: '../js'
+    js: '../js',
+    models: '../models',
+    views: '../views',
+    templates: '../templates'
   },
   shim: {
     'marionette': {
@@ -17,6 +20,9 @@ require.config({
     },
     'jquery': {
       exports: '$'
+    },
+    'handlebars': {
+      exports: 'Handlebars'
     }
   },
   deps: [ 'js/app' ]
