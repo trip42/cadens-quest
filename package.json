@@ -1,0 +1,10 @@
+{
+  "name": "cadens-quest",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/trip42/cadens-quest.git"
+  },
+  "dependencies": {
+    "express": "*"
+  }
+}
