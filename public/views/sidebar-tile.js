@@ -3,11 +3,10 @@ define( function( require ) {
 
 	var Marionette = require( 'marionette' );
 	var Handlebars = require( 'handlebars' );
-	var tmplTile = require( 'text!templates/sidebar-tile.html' );
 
 	var TileView = Marionette.ItemView.extend({
-		template: Handlebars.compile( tmplTile ),
-		className: 'tile-container',
+		template: Handlebars.compile( '' ),
+		className: 'tile',
 		events: {
 			click: 'selectTile'
 		},
@@ -22,6 +21,9 @@ define( function( require ) {
 		},
 		toggleSelected: function() {
 			this.$el.toggleClass( 'selected', this.game.get( 'selectedTile' ) === this.model.get( 'id' ) );
+		},
+		onRender: function() {
+			this.$el.addClass( this.model.get( 'id' ) );
 		}
 	});
 

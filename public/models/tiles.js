@@ -5,7 +5,6 @@ define( function( require ) {
 	var TileModel = require( 'models/tile' );
 
 	return Backbone.Collection.extend({
-		url: '/tiles',
 		model: TileModel
 	});
 })

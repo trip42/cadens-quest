@@ -3,6 +3,7 @@ define( function( require ) {
 
 	var Marionette = require( 'marionette' );
 	var Handlebars = require( 'handlebars' );
+	var CONST = require( 'js/constants' );
 
 	var TileView = Marionette.ItemView.extend({
 		template: Handlebars.compile( '' ),
@@ -17,15 +18,15 @@ define( function( require ) {
 		},
 		onRender: function() {
 			this.$el.css({
-				top: this.model.get( 'y' ) * 64,
-				left: this.model.get( 'x' ) * 64
+				top: this.model.get( 'y' ) * CONST.tileSize,
+				left: this.model.get( 'x' ) * CONST.tileSize
 			});
 
 			this.$el.html('');
 
 			_.each( this.model.get( 'tiles' ), function( id ) {
 				var $layer = $( '<div class="layer"></div>' );
-				$layer.addClass( this.tiles.get( id ).get( 'name' ) );
+				$layer.addClass( id );
 				this.$el.append( $layer );
 			}, this );
 		},

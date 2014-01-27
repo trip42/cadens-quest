@@ -13,12 +13,12 @@ define(function( require ) {
 				map: new MapCollection({ game: this }),
 				x: 512,
 				y: 512,
-				selectedTile: 0
+				selectedTile: 0,
+				mapFetched: new Date()
 			});
 		},
 		fetch: function( options ) {
 			$.when(
-				this.get( 'tiles' ).fetch(),
 				this.get( 'map' ).fetch()
 			).then( options.success, options.error );
 		}
