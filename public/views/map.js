@@ -27,6 +27,8 @@ define( function( require ) {
 			this.scrollMap = _.debounce( _.bind( this.scrollMap, this ), 1 );
 			$( window ).resize( this.scrollMap );
 			$( window ).keypress( _.bind( this.zoomMap, this ) );
+			// refetch the collection every 5 seconds
+			window.setInterval( _.bind( this.collection.fetchPosition, this.collection ), 5000 );
 		},
 		onRender: function() {
 			this.scrollMap();

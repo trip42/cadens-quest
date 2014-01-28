@@ -1,23 +1,16 @@
 "use strict";
 
+var fs = require( 'fs' );
 var express = require( 'express' );
 var CONST = require( './constants' );
 
 var app = express();
 
-var map = {
-	0: { id: 0, tiles: [ 1, 2 ] },
-	2: { id: 2, tiles: [ 3 ] }
-};
+var map = {};
 
-var tiles = [
-	{ id: 0, name: 'emtpy' },
-	{ id: 1, name: 'grass' },
-	{ id: 2, name: 'rock' },
-	{ id: 3, name: 'chest' },
-	{ id: 4, name: 'sand' },
-	{ id: 5, name: 'tree' },
-];
+if ( fs.existsSync( 'map.json' ) ) {
+	map = JSON.parse( fs.readFileSync( 'map.json', { encoding: 'utf8' } ) );
+}
 
 app.use( express.static( __dirname + '/public' ) );
 app.use( express.bodyParser() );
@@ -48,11 +41,6 @@ app.get( '/map/:x/:y', function( req, res )  {
 	res.send( JSON.stringify( section ) );
 });
 
-app.get( '/tiles', function( req, res ) {
-	res.setHeader( 'content-type', 'application/json' );
-	res.send( JSON.stringify( tiles ) );
-});
-
 app.put( '/map/:x/:y', function( req, res ) {
 	var x = parseInt( req.params.x );
 	var y = parseInt( req.params.y );
@@ -68,5 +56,10 @@ app.put( '/map/:x/:y', function( req, res ) {
 	res.setHeader( 'content-type', 'application/json' );
 	res.send( JSON.stringify( map[ id ] ) );
 });
+
+// save the map state to disk
+setInterval( function() {
+	fs.writeFile( 'map.json', JSON.stringify( map ) );
+}, 15000 );
 
 app.listen( 3000 );

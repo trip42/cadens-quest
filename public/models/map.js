@@ -24,8 +24,6 @@ define( function( require ) {
 			}, this );
 
 			this.remove( nonVisible );
-
-			console.log( '# tiles', this.length );
 		},
 		fetchPosition: function() {
 			this.fetch( {

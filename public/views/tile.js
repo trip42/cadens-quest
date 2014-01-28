@@ -12,6 +12,9 @@ define( function( require ) {
 			contextmenu: 'selectTile',
 			click: 'updateTile'
 		},
+		modelEvents: {
+			change: 'render'
+		},
 		initialize: function( options ) {
 			this.game = options.game;
 			this.tiles = this.game.get( 'tiles' );
