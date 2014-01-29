@@ -1,4 +1,4 @@
 module.exports = {
-	mapSectionSize: 40,
+	mapSectionSize: 30,
 	mapWidth: 1024
 };

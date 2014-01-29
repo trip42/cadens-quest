@@ -30,7 +30,7 @@ app.get( '/map/:x/:y', function( req, res )  {
 	for ( var cx=xMin; cx<xMax; cx++ ) {
 		for ( var cy=yMin; cy<yMax; cy++ ) {
 			var id = cy * CONST.mapWidth + cx;
-			var tile = map[ id ] || { id: id, tiles: [] };
+			var tile = map[ id ] || { id: id, layers: [] };
 			tile.x = cx;
 			tile.y = cy;
 			section.push( tile );
@@ -46,11 +46,11 @@ app.put( '/map/:x/:y', function( req, res ) {
 	var y = parseInt( req.params.y );
 	var id = y * CONST.mapWidth + x;
 
-	console.log( 'updating tile', x, y, JSON.stringify( req.body.tiles ) );
+	console.log( 'updating tile', x, y, JSON.stringify( req.body.layers ) );
 
 	map[ id ] = {
 		id: id,
-		tiles: req.body.tiles
+		layers: req.body.layers
 	};
 
 	res.setHeader( 'content-type', 'application/json' );
