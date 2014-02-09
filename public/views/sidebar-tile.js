@@ -23,7 +23,7 @@ define( function( require ) {
 			this.$el.toggleClass( 'selected', this.game.get( 'selectedTile' ) === this.model.get( 'id' ) );
 		},
 		onRender: function() {
-			this.$el.addClass( this.model.getClass() );
+			this.$el.addClass( this.model.get( 'id' ) );
 		}
 	});
 

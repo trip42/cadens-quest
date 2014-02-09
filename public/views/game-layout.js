@@ -35,26 +35,33 @@ define( function( require ) {
 			this.ui.tilesetImg.attr( 'src', CONST.tilesetImg );
 		},
 		generateTiles: function() {
-			var height = Math.floor( this.ui.tilesetImg.height() / CONST.tileHeight );
+			var tileSize = CONST.tileSize;
+			var width = Math.floor( this.ui.tilesetImg.width() / tileSize );
+			var height = Math.floor( this.ui.tilesetImg.height() / tileSize );
 			var id, offsetX, offsetY, css = '';
 
 			for( var y=0; y<height; y++ ) {
-				_.each( CONST.tileViews, function( x, view ) {
-					offsetX = -1 * CONST.tileWidth * x;
-					offsetY = -1 * CONST.tileHeight * y;
-					css += '.t' + y + '_' + view + ' { background-position: ' + offsetX + 'px ' + offsetY + 'px }\n';
-				}, this );
+				for ( var x=0; x<width; x++ ) {
+					id = 't' + x + '_' + y;
+					offsetX = -1 * tileSize * x;
+					offsetY = -1 * tileSize * y;
 
-				this.model.get( 'tiles' ).add({
-					id: 't' + y,
-					direction: 'left'
-				});
+					this.model.get( 'tiles' ).add({
+						id: id,
+						x: x,
+						y: y,
+						offsetX: offsetX,
+						offsetY: offsetY
+					});
+
+					css += '.' + id + ' { background-position: ' + offsetX + 'px ' + offsetY + 'px }\n';
+				}
 			}
 
 			css += '.tile, .layer {\n';
 			css += '  background-image: url(' + this.ui.tilesetImg.attr( 'src' ) + ');\n';
-			css += '  height: ' + CONST.tileHeight + 'px;\n';
-			css += '  width: ' + CONST.tileWidth + 'px;\n';
+			css += '  height: ' + tileSize + 'px;\n';
+			css += '  width: ' + tileSize + 'px;\n';
 			css += '}';
 
 			this.ui.tilesetCss.html( css );
