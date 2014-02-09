@@ -1,6 +1,15 @@
 define( function( require ) {
 	return {
-		tileSize: 32,
-		tilesetImg: '/imgs/tiles-32x32.png'
+		tileWidth: 50, //101,
+		tileHeight: 86, // 171,
+		tileStackHeight: 20, //41,
+		tileOffset: 45, //80,
+		tilesetImg: '/imgs/cute-tiles-small.png',
+		tileViews: {
+			left: 0,
+			up: 1,
+			right: 2,
+			down: 3
+		}
 	};
 });

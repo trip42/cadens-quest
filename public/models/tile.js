@@ -7,5 +7,8 @@ define( function( require ) {
 		url: function() {
 			return '/map/' + this.get( 'x' ) + '/' + this.get( 'y' );
 		}
+		, getClass: function() {
+			return this.get( 'id' ) + '_' + this.get( 'direction' );
+		}
 	});
 });
