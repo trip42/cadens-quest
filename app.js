@@ -62,4 +62,4 @@ setInterval( function() {
 	fs.writeFile( 'map.json', JSON.stringify( map ) );
 }, 15000 );
 
-app.listen( 3000 );
+app.listen( 24603 );
